@@ -123,7 +123,7 @@ if __name__ == "__main__":
     html_out = template.render(reports=all_reports_sorted)
 
     # 直接輸出到 repo root
-    with open("全球投行報告總覽.html", "w", encoding="utf-8") as f:
+    with open("index.html", "w", encoding="utf-8") as f:
         f.write(html_out)
 
-    print("已產生『全球投行報告總覽.html』，用瀏覽器打開即可！")
+    print("insex.html』，用瀏覽器打開即可！")
