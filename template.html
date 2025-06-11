@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>全球投行研究報告彙總</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px;}
+        table { border-collapse: collapse; width: 100%;}
+        th, td { border: 1px solid #999; padding: 8px; text-align: left;}
+        th { background: #f1f1f1; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        a { color: #2257c9; }
+    </style>
+</head>
+<body>
+    <h2>全球投行研究報告彙總</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>日期</th>
+                <th>銀行</th>
+                <th>分類</th>
+                <th>標題</th>
+                <th>原文連結</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rpt in reports %}
+            <tr>
+                <td>{{ rpt.publish_date }}</td>
+                <td>{{ rpt.bank }}</td>
+                <td>{{ rpt.topic or "" }}</td>
+                <td>{{ rpt.title }}</td>
+                <td><a href="{{ rpt.url }}" target="_blank">連結</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
