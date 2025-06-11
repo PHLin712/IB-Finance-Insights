@@ -1,0 +1,27 @@
+name: 每日自動更新投行報告
+
+on:
+  schedule:
+    - cron: '0 23 * * *'  # 每天台灣時間 10:10 AM，自動執行（可改）
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 安裝 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.10
+      - name: 安裝依賴
+        run: pip install -r requirements.txt
+      - name: 執行爬蟲並產生 index.html
+        run: python main.py
+      - name: 自動推送更新
+        run: |
+          git config --global user.email "bot@example.com"
+          git config --global user.name "autobot"
+          git add index.html
+          git commit -m "每日自動更新投行報告" || echo "No changes"
+          git push
